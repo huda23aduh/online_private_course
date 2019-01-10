@@ -37,6 +37,11 @@ class Guru_notification extends CI_Controller {
 	// 	$this->load->view('guru/v_murid_footer');
 	// }
 
+	public function changeAllNotificationStatusTo1ByIdGuru($idguru){
+		$data=array("is_open"=>"1");
+		$this->guru_notification_model->updateAllNotifStatusTo1($idguru, $data);
+	}
+
 	public function getTotalUnOpenedNotifDataByIdguru($idguru)
 	{
 

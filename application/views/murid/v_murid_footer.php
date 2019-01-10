@@ -76,7 +76,8 @@
 		        			'</div></a></li><li class=divider></li>');
 		        		//console.log("Company Name "  + i + ' = ' + d.details[i].murid_idmurid);
 					}
-					$('#ul_notif').append('<li><a href=google.com> <div><em class=fa fa-envelope></em>' + 'aaaaaaaaaa' + '</div></a></li><li class=divider></li>');
+
+					$('#ul_notif').append('<li><a href=google.com> <div><em class=fa fa-envelope></em>' + '</div></a></li><li class=divider></li>');
 
 		        	$('#total_unopened').text(d.total_count.total);
 					//alert(d.total);                   

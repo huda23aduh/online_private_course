@@ -46,7 +46,11 @@ class Guru_notification_model extends CI_Model
         return $query->result();   
     }
     
-    
+    public function updateAllNotifStatusTo1($idguru, $data){
+        
+        $this->db->where("guru_idguru",$idguru);
+        $this->db->update("guru_notification",$data); 
+    }
 
     public function save($data,$table){
 

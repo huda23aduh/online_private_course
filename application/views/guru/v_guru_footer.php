@@ -43,12 +43,21 @@
 
 	<script type="text/javascript">
 
+		var url_full = get_url();
+		var url_array = url_full.split("/");
+
+		console.log(url_array);
+
 		 $(document).ready(function() {
+
+		 	if(url_array[5] == "available_les_privat")
+		 		change_notif_guru_status_to_unread();
+
 		 	refresh_notif();
 
 		    $("#refresh_btn").click(function() {  
 		    	$('#ul_notif').empty();           
-
+		    	console.log("refresh_btn clicked");
 			    $.ajax({    //create an ajax request to display.php
 			        type: "GET",
 			        url: <?php echo '"'.base_url().'guru_notification/getTotalUnOpenedNotifDataByIdguru/'.$idguru.'"'; ?> ,             
@@ -60,12 +69,11 @@
 			        	var details_notif = d.details;
 			        	
 			        	for (var i in details_notif) {
-			        		$('#ul_notif').append('<li><a href=google.com> <div><em class=fa fa-envelope></em>'  + d.details[i].idnotification + d.details[i].information +
+			        		$('#ul_notif').append('<li><a href=#> <div><em class=fa fa-envelope></em> Anda mendapat tawaran les dengan detail : '   +d.details[i].information +
 			        			'</div></a></li><li class=divider></li>');
 						}
-						$('#ul_notif').append('<li><a href=google.com> <div><em class=fa fa-envelope></em>'  + '</div></a></li><li class=divider></li>');
-
-			        	$('#total_unopened').text(d.total_count.total);        
+						<?php echo "$('#ul_notif').append('<li><a href=available_les_privat/".$idguru."> <div><em class=fa fa-envelope></em>' + '-- LIHAT SEMUA --' + '</div></a></li><li class=divider></li>');" ?>
+						$('#total_unopened').text(d.total_count.total);        
 
 			        }
 
@@ -73,7 +81,26 @@
 			});
 		});
 
+		function change_notif_guru_status_to_unread(){
+			$.ajax({   
+				type: "GET",
+			    url: <?php echo '"'.base_url().'guru_notification/changeAllNotificationStatusTo1ByIdGuru/'.$idguru.'"'; ?> ,             
+			    dataType: "html",   //expect html to be returned                
+				success: function(response){  
+			    	alert("notifikasi tawaran les sudah dibaca semua");
+			    }
+
+			});
+		}
+
+		function get_url(){
+			var url      = window.location.href; 
+			return url;
+		}
+
 		function refresh_notif(){
+
+			console.log("inside refresh_notif");
 
 			$('#ul_notif').empty();
 
@@ -88,11 +115,11 @@
 			        var details_notif = d.details;
 			        	
 			        for (var i in details_notif) {
-			        	$('#ul_notif').append('<li><a href=google.com> <div><em class=fa fa-envelope></em>' + 'id les = ' + d.details[i].information +
+			        	$('#ul_notif').append('<li><a href=#> <div><em class=fa fa-envelope></em> Anda mendapat tawaran les dengan detail : ' + 'id les = ' + d.details[i].information +
 			        	'</div></a></li><li class=divider></li>');
-			        	//console.log("Company Name "  + i + ' = ' + d.details[i].murid_idmurid);
 					}
-					$('#ul_notif').append('<li><a href=list_les_privat> <div><em class=fa fa-envelope></em>' + '-- LIHAT SEMUA --' + '</div></a></li><li class=divider></li>');
+					<?php echo "$('#ul_notif').append('<li><a href=available_les_privat/".$idguru."> <div><em class=fa fa-envelope></em>' + '-- LIHAT SEMUA --' + '</div></a></li><li class=divider></li>');" ?>
+					//$('#ul_notif').append('<li><a href=list_les_privat> <div><em class=fa fa-envelope></em>' + '-- LIHAT SEMUA --' + '</div></a></li><li class=divider></li>');
 
 					$('#total_unopened').text(d.total_count.total);
 					                   
