@@ -6,38 +6,7 @@
 			</div>
 		</form> -->
 		<ul class="nav menu">
-			<li class="active"><a href=<?php echo base_url()."admin/home"; ?>> <img style="height: 30px;width:30px;" src=<?php echo public_url()."images/dashboard.png" ?> /> Dashboard</a></li>
-			<li><a href=<?php echo base_url()."admin/venue"; ?> ><img style="height: 30px;width:30px;" src=<?php echo public_url()."images/venue_logo.png" ?> /> Venue</a></li>
-			<li ><a href=<?php echo base_url()."admin/negative_word"; ?> ><img style="height: 20px;width:20px;" src=<?php echo public_url()."images/dislike.png" ?> /> Negative Word</a></li>
-			<li ><a href=<?php echo base_url()."admin/positive_word"; ?>><img style="height: 20px;width:20px;" src=<?php echo public_url()."images/like.png" ?> /> Positive Word</a></li>
-			<li><a href=<?php echo base_url()."admin/stop_word"; ?>><img style="height: 20px;width:20px;" src=<?php echo public_url()."images/stop_logo.png" ?> /> Stop / Common Word</a></li>
-			<!-- <li><a href="forms.html"><svg clearfixass="glyph stroked pencil"><use xlink:href="#stroked-pencil"></use></svg> Sto</a></li>
-			<li><a href="panels.html"><svg class="glyph stroked app-window"><use xlink:href="#stroked-app-window"></use></svg> Alerts &amp; Panels</a></li>
-			<li><a href="icons.html"><svg class="glyph stroked star"><use xlink:href="#stroked-star"></use></svg> Icons</a></li> -->
-			<!-- <li class="parent ">
-				<a href="#">
-					<span data-toggle="collapse" href="#sub-item-1"><svg class="glyph stroked chevron-down"><use xlink:href="#stroked-chevron-down"></use></svg></span> Dropdown 
-				</a>
-				<ul class="children collapse" id="sub-item-1">
-					<li>
-						<a class="" href="#">
-							<svg class="glyph stroked chevron-right"><use xlink:href="#stroked-chevron-right"></use></svg> Sub Item 1
-						</a>
-					</li>
-					<li>
-						<a class="" href="#">
-							<svg class="glyph stroked chevron-right"><use xlink:href="#stroked-chevron-right"></use></svg> Sub Item 2
-						</a>
-					</li>
-					<li>
-						<a class="" href="#">
-							<svg class="glyph stroked chevron-right"><use xlink:href="#stroked-chevron-right"></use></svg> Sub Item 3
-						</a>
-					</li>
-				</ul>
-			</li>
-			<li role="presentation" class="divider"></li> -->
-			<!-- <li><a href="login.html"><svg class="glyph stroked male-user"><use xlink:href="#stroked-male-user"></use></svg> Login Page</a></li> -->
+			<?php include 'v_admin_sidebar_item.php';?>	
 		</ul>
 		
 
@@ -56,16 +25,9 @@
 				<h1 class="page-header">Dashboard</h1>
 				<?php
 					if (isset($this->session->userdata['logged_in'])) {
-						$username = ($this->session->userdata['logged_in']['username']);
-						$iduser = ($this->session->userdata['logged_in']['iduser']);
+						$email = ($this->session->userdata['logged_in']['email']);
+						$idadmin = ($this->session->userdata['logged_in']['idadmin']);
 						$password = ($this->session->userdata['logged_in']['password']);
-
-						// echo "<h1>".$username."</h1>";
-						// echo "<br>";
-						// echo "<h1>".$iduser."</h1>";
-						// echo "<br>";
-						// echo "<h1>".$password."</h1>";
-						// echo "<br>";
 
 					}
 					

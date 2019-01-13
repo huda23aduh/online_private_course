@@ -51,6 +51,7 @@
 				      <th scope="col">tarif</th>
 				      <th scope="col">alamat</th>
 				      <th scope="col">pelajaran</th>
+				      <th scope="col">nama murid</th>
 				      <th scope="col">telepon murid</th>
 				      <th scope="col">Status</th>
 				      <!-- <th scope="col">Action</th> -->
@@ -71,6 +72,7 @@
 								echo "<td>".$value->tarif."</td>";
 								echo "<td>".$value->alamat_les."</td>";
 								echo "<td>".$value->nama_pelajaran."</td>";
+								echo "<td>".$value->nama_murid."</td>";
 								echo "<td>".$value->telepon_murid."</td>";
 								echo "<td>".$ket_stat."</td>";
 								//echo "<td> edit    delete </td>";

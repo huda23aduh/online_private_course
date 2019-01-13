@@ -107,11 +107,15 @@ class Les_model extends CI_Model
                 $i++;
             } 
 
-            $this->db->select('*');
-            $this->db->from('les');
+            $this->db->select('l.idles,l.tanggal_les, l.waktu_mulai, l.durasi_jam, l.tarif, l.alamat_les,  p.nama_pelajaran, m.nama as nama_murid, l.status_les_idstatus_les ', false);
+            $this->db->from('les As l');
+            $this->db->join('pelajaran AS p', 'l.pelajaran_idpelajaran = p.idpelajaran');
+            $this->db->join('murid AS m', 'l.murid_idmurid = m.idmurid');
             $this->db->where_in('pelajaran_idpelajaran', $arrTID);
             $this->db->where('status_les_idstatus_les', 0);
             $query = $this->db->get();
+
+            
             
             $val_return =  $query->result(); 
         }

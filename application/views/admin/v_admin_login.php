@@ -22,16 +22,16 @@
 	<div class="row">
 		<div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-4 col-md-offset-4">
 			<div class="login-panel panel panel-default">
-				<div class="panel-heading">Login Admin SIREK</div>
+				<div class="panel-heading">Login Admin</div>
 				<?php if(! is_null($msg)) echo $msg;?> 
 				<div class="panel-body">
-					<form action="admin/user_login_process" method="post" role="form">
+					<form action="login_process" method="post" role="form">
 						<fieldset>
 							<div class="form-group">
-								<input class="form-control" placeholder="username" name="username" type="username" autofocus="">
+								<h4>Email</h4><input class="form-control" placeholder="email" name="txt_email" type="username" autofocus="">
 							</div>
 							<div class="form-group">
-								<input class="form-control" placeholder="Password" name="password" type="password" value="">
+								<h4>Password</h4><input class="form-control" placeholder="Password" name="txt_password" type="password" value="">
 							</div>
 							<!-- <div class="checkbox">
 								<label>

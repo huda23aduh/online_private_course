@@ -18,7 +18,7 @@
 			</div>
 		</form> -->
 		<ul class="nav menu">
-			<?php include 'v_guru_sidebar_item.php';?>
+			<?php include 'v_admin_sidebar_item.php';?>
 		</ul>
 		
 
@@ -34,18 +34,43 @@
 		
 		<div class="row">
 			<div class="col-lg-12">
-				<h1 class="page-header">Dashboard</h1>
+				<h1 class="page-header">Tambah Pelajaran</h1>
 				
 			</div>
 		</div><!--/.row-->
 		
-		
-		
-		
+		<div class="row">
+			<div class="col-lg-12">
+				<form class="form-horizontal" action=<?php echo base_url()."admin/createPelajaran"?> method="post">
+	      			<table border="0px" class="table-responsive">
+	      				<tr>
+	      					<td>
+	      						<div class="form-group">
+								    <div class="col-sm-10">
+								      <h4>nama pelajaran</h4><input required type="text" class="form-control" name="txt_nama_pelajaran" id="idguru"size="40">
+								    </div>
 
-		
-		
+								  </div>
+	      					</td>
+	      					
 
+	      				</tr>
+	      				
+	      				
+	      			</table>
+				  <div class="form-group"> 
+				    <div class="col-sm-2">
+				      <button type="submit" class="btn btn-success btn-lg btn-block">Tambah</button>
+				    </div>
+				  </div>
+				</form>
+			</div>
+			
+		</div><!--/.row-->
+		
+		
+		
+								
 		
 	</div>	<!--/.main-->
 

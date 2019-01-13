@@ -8,11 +8,7 @@ class Murid extends CI_Controller {
     {
         parent::__construct();
 
-        // if (!$this->session->session_data('logged_in'))
-        // { 
-        //     redirect('murid/login');
-        // }
-
+        
          $this->load->model('murid_model');
          $this->load->model('pelajaran_model');
          $this->load->model('les_model');
@@ -135,7 +131,17 @@ class Murid extends CI_Controller {
 
 		if($is_exist->total == 0){
 
-			$this->murid_model->save($data,'murid');
+			$idmurid = $this->murid_model->save($data,'murid');
+
+			$num = 4;
+			$num_padded = sprintf("%04d", $idmurid);
+			$kodemurid = 'MRD'.$num_padded;
+
+			$data = array(
+				'kode_murid' => $kodemurid,
+				'updated_at' => date("Y-m-d H:i:s")
+			);
+			$this->murid_model->updateKodeMurid($idmurid, $data,'murid');
 
 			echo ("<script LANGUAGE='JavaScript'>
 		    window.alert('BERHASIL INSERT DATA');

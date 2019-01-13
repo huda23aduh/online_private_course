@@ -1,8 +1,8 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Murid_model extends CI_Model
+class Admin_model extends CI_Model
 {
-    private $table = "murid";
+    private $table = "admin";
 
     public function __construct()
     {
@@ -14,7 +14,7 @@ class Murid_model extends CI_Model
 
 
         $this->db->select('COUNT(email) as total');
-        $this->db->from('murid');
+        $this->db->from('guru');
         //$this->db->like('kata', $str );
         $this->db->where('email =', $email);
 
@@ -26,19 +26,25 @@ class Murid_model extends CI_Model
     public function check($email, $password) {
 
         $this->db->select('*');
-        $this->db->from('murid');
+        $this->db->from('admin');
         $this->db->where('email', $email );
         $this->db->where('password', $password );
         
         $query = $this->db->get();
-        
+
         return $query->result();    
     }
    
 
-    public function getAll()
+    public function getAllGuruByIdPelajaran($id_pelajaran_param)
     {
-        return $this->db->get('murid')->result();
+        $this->db->select('*');
+        $this->db->from('guru_pelajaran');
+        $this->db->where('pelajaran_idpelajaran', $id_pelajaran_param );
+        
+        $query = $this->db->get();
+        //var_dump($query->result());
+        return $query->result();    
     }
     
     public function getById($id)
@@ -47,20 +53,8 @@ class Murid_model extends CI_Model
     }
 
     public function save($data,$table){
+
         $this->db->insert($table,$data);
-        $insert_id = $this->db->insert_id();
-
-        return  $insert_id;
-
-        //$this->db->insert($table,$data);
-    }
-
-     public function updateKodeMurid($idmurid, $data,$table){
-
-        $this->db->where("idmurid",$idmurid);
-        $this->db->update($table,$data); 
-
-        return  $idles;
     }
 
     public function update()

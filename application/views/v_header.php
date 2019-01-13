@@ -70,9 +70,9 @@
             <li class="nav-item">
               <a class="nav-link js-scroll-trigger" href=<?php echo base_url() ?> > <img style="height: 30px;width:30px;" src=<?php echo public_url()."images/home.png" ?> /> Beranda</a>
             </li>
-            <!-- <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="admin" > <img style="height: 30px;width:30px;" src=<?php echo public_url()."images/admin_logo.png" ?> /> Admin</a>
-            </li> -->
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href=<?php echo base_url().'admin/login' ?> > <img style="height: 30px;width:30px;" src=<?php echo public_url()."images/admin_logo.png" ?> /> Admin</a>
+            </li>
             <!-- <li class="nav-item">
               <a class="nav-link js-scroll-trigger" href="#venue">Venue</a>
             </li>

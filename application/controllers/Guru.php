@@ -189,7 +189,17 @@ class Guru extends CI_Controller {
 
 		if($is_exist->total == 0){
 
-			$this->guru_model->save($data,'guru');
+			$idguru = $this->guru_model->save($data,'guru');
+
+			$num = 4;
+			$num_padded = sprintf("%04d", $idguru);
+			$kodeguru = 'GR'.$num_padded;
+
+			$data = array(
+				'kode_guru' => $kodeguru,
+				'updated_at' => date("Y-m-d H:i:s")
+			);
+			$this->guru_model->updateKodeGuru($idguru, $data,'guru');
 
 			echo ("<script LANGUAGE='JavaScript'>
 		    window.alert('BERHASIL INSERT DATA');

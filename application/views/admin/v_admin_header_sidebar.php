@@ -38,20 +38,15 @@
 <body>
 	<?php
 		if (isset($this->session->userdata['logged_in'])) {
-			$username = ($this->session->userdata['logged_in']['username']);
-			$iduser = ($this->session->userdata['logged_in']['iduser']);
+			$email = ($this->session->userdata['logged_in']['email']);
+			$idadmin = ($this->session->userdata['logged_in']['idadmin']);
 			$password = ($this->session->userdata['logged_in']['password']);
 
-			// echo "<h1>".$username."</h1>";
-			// echo "<br>";
-			// echo "<h1>".$iduser."</h1>";
-			// echo "<br>";
-			// echo "<h1>".$password."</h1>";
-			// echo "<br>";
+			
 
 		} else {
 			//header("location: admin");
-			redirect(base_url('admin'));
+			redirect(base_url('admin/login'));
 		}
 	?>
 	<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -63,10 +58,10 @@
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href=<?php echo base_url()."admin/home"; ?>><span>SIREK WISATA BENGKULU</span>Admin</a>
+				<a class="navbar-brand" href=<?php echo base_url()."admin/home"; ?>><span>LES PRIVAT ONLINE </span>Admin</a>
 				<ul class="user-menu">
 					<li class="dropdown pull-right">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown"><svg class="glyph stroked male-user"><use xlink:href="#stroked-male-user"></use></svg> <?php echo $username;  ?><span class="caret"></span></a>
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown"><svg class="glyph stroked male-user"><use xlink:href="#stroked-male-user"></use></svg> <?php echo $email;  ?><span class="caret"></span></a>
 						<ul class="dropdown-menu" role="menu">
 							<!-- <li><a href="#"><svg class="glyph stroked male-user"><use xlink:href="#stroked-male-user"></use></svg> Profile</a></li>
 							<li><a href="#"><svg class="glyph stroked gear"><use xlink:href="#stroked-gear"></use></svg> Settings</a></li> -->

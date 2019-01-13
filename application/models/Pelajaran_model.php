@@ -23,16 +23,16 @@ class Pelajaran_model extends CI_Model
         return $query->row();    
     }
 
-    public function check($email, $password) {
+    public function checkPelajaran($nama_pelajaran_param) {
 
-        $this->db->select('*');
+        $this->db->select('COUNT(*) as total');
         $this->db->from('pelajaran');
-        $this->db->where('email', $email );
-        $this->db->where('password', $password );
-        
+        $this->db->like('nama_pelajaran', $nama_pelajaran_param );
+
         $query = $this->db->get();
+        return $query->row();   
+
         
-        return $query->result();    
     }
    
 
@@ -40,20 +40,34 @@ class Pelajaran_model extends CI_Model
     {
         $this->db->select('*');
         $this->db->from('pelajaran');
-        
+        $this->db->where('is_deleted', 0 );
         $query = $this->db->get();
         
         return $query->result(); 
     }
     
-    public function getById($id)
+    public function getById($idpelajaran)
     {
-        return $this->db->get_where($this->_table, ["product_id" => $id])->row();
+        $this->db->select('*');
+        $this->db->from('pelajaran');
+        $this->db->where('idpelajaran', $idpelajaran );
+        $this->db->where('is_deleted', 0 );
+        $query = $this->db->get();
+        
+        return $query->result(); 
     }
 
     public function save($data,$table){
 
         $this->db->insert($table,$data);
+    }
+
+    public function updateNamaPelajaran($idpelajaran, $data,$table){
+
+        $this->db->where("idpelajaran",$idpelajaran);
+        $this->db->update($table,$data); 
+
+        return  $idles;
     }
 
     public function update()
@@ -66,8 +80,11 @@ class Pelajaran_model extends CI_Model
         $this->db->update($this->_table, $this, array('product_id' => $post['id']));
     }
 
-    public function delete($id)
-    {
-        return $this->db->delete($this->_table, array("product_id" => $id));
+    public function delete($idpelajaran, $data,$table){
+        
+        $this->db->where("idpelajaran",$idpelajaran);
+        $this->db->update($table,$data); 
+
+        return  $idles;
     }
 }
