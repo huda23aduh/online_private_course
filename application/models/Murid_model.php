@@ -38,12 +38,31 @@ class Murid_model extends CI_Model
 
     public function getAll()
     {
-        return $this->db->get('murid')->result();
+        $this->db->select('*');
+        $this->db->from('murid');
+        $this->db->where('is_deleted', 0 );
+        
+        $query = $this->db->get();
+        return $query->result();    
     }
     
-    public function getById($id)
+   public function getById($kode_guru)
     {
-        return $this->db->get_where($this->_table, ["product_id" => $id])->row();
+        $this->db->select('*');
+        $this->db->from('murid');
+        $this->db->where('kode_murid', $kode_guru );
+        $this->db->where('is_deleted', 0 );
+        $query = $this->db->get();
+        
+        return $query->result(); 
+    }
+
+    public function updateDataMurid($kode_murid, $data,$table){
+
+        $this->db->where("kode_murid",$kode_murid);
+        $this->db->update($table,$data); 
+
+        return  $kode_murid;
     }
 
     public function save($data,$table){
@@ -73,8 +92,11 @@ class Murid_model extends CI_Model
         $this->db->update($this->_table, $this, array('product_id' => $post['id']));
     }
 
-    public function delete($id)
-    {
-        return $this->db->delete($this->_table, array("product_id" => $id));
+    public function delete($kode_murid, $data,$table){
+        
+        $this->db->where("kode_murid",$kode_murid);
+        $this->db->update($table,$data); 
+
+        return  $kode_murid;
     }
 }

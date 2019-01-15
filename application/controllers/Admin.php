@@ -85,6 +85,84 @@ class Admin extends CI_Controller {
 
 	}
 
+	public function edit_guru($kodeguru)
+	{
+		$data = array(
+			'var_guru' => $this->guru_model->getById($kodeguru)
+		);
+
+		$this->load->view('admin/v_admin_header_sidebar');
+		$this->load->view('admin/v_admin_edit_guru', $data);
+		$this->load->view('admin/v_admin_footer');
+
+
+	}
+
+	public function edit_murid($kodemurid)
+	{
+		$data = array(
+			'var_murid' => $this->murid_model->getById($kodemurid)
+		);
+
+		$this->load->view('admin/v_admin_header_sidebar');
+		$this->load->view('admin/v_admin_edit_murid', $data);
+		$this->load->view('admin/v_admin_footer');
+
+
+	}
+
+	public function editGuru()
+	{
+		$var_kode_guru = $this->input->post('txt_kode_guru');
+        $var_nama_guru = $this->input->post('txt_nama_guru');
+        $var_email_guru = $this->input->post('txt_email_guru');
+        $var_telepon_guru = $this->input->post('txt_telepon_guru');
+        $var_alamat_guru = $this->input->post('txt_alamat_guru');
+		
+		$data = array(
+			'nama' => $var_nama_guru,
+			'email' => $var_email_guru,
+			'telepon' => $var_telepon_guru,
+			'alamat' => $var_alamat_guru,
+
+			'updated_at' => date("Y-m-d H:i:s")
+		);
+		
+		$this->guru_model->updateDataGuru($var_kode_guru, $data,'guru');
+
+		echo ("<script LANGUAGE='JavaScript'>
+			window.alert('data guru berhasil diubah');
+			window.location.href='".base_url()."admin/list_guru';
+			</script>");
+
+	}
+
+	public function editMurid()
+	{
+		$var_kode_murid = $this->input->post('txt_kode_murid');
+        $var_nama_murid = $this->input->post('txt_nama_murid');
+        $var_email_murid = $this->input->post('txt_email_murid');
+        $var_telepon_murid = $this->input->post('txt_telepon_murid');
+        $var_alamat_murid = $this->input->post('txt_alamat_murid');
+		
+		$data = array(
+			'nama' => $var_nama_murid,
+			'email' => $var_email_murid,
+			'telepon' => $var_telepon_murid,
+			'alamat' => $var_alamat_murid,
+
+			'updated_at' => date("Y-m-d H:i:s")
+		);
+		
+		$this->murid_model->updateDataMurid($var_kode_murid, $data,'murid');
+
+		echo ("<script LANGUAGE='JavaScript'>
+			window.alert('data murid berhasil diubah');
+			window.location.href='".base_url()."admin/list_murid';
+			</script>");
+
+	}
+
 	public function editPelajaran()
 	{
 		$var_idpelajaran = $this->input->post('txt_idpelajaran');
@@ -123,6 +201,42 @@ class Admin extends CI_Controller {
 
 	}
 
+	public function hapusGuru($kode_guru)
+	{
+		$var_kode_guru = $kode_guru;
+		
+		$data = array(
+			'is_deleted' => 1,
+			'updated_at' => date("Y-m-d H:i:s")
+		);
+		
+		$this->guru_model->delete($var_kode_guru, $data,'guru');
+
+		echo ("<script LANGUAGE='JavaScript'>
+			window.alert('guru berhasil dihapus');
+			window.location.href='".base_url()."admin/list_guru';
+			</script>");
+
+	}
+
+	public function hapusMurid($kode_murid)
+	{
+		$var_kode_murid = $kode_murid;
+		
+		$data = array(
+			'is_deleted' => 1,
+			'updated_at' => date("Y-m-d H:i:s")
+		);
+		
+		$this->murid_model->delete($var_kode_murid, $data,'murid');
+
+		echo ("<script LANGUAGE='JavaScript'>
+			window.alert('murid berhasil dihapus');
+			window.location.href='".base_url()."admin/list_murid';
+			</script>");
+
+	}
+
 	public function list_pelajaran()
 	{
 		$data = array(
@@ -132,8 +246,6 @@ class Admin extends CI_Controller {
 		$this->load->view('admin/v_admin_header_sidebar');
 		$this->load->view('admin/v_admin_list_pelajaran', $data);
 		$this->load->view('admin/v_admin_footer');
-
-
 	}
 
 	public function list_guru()

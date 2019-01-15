@@ -53,7 +53,7 @@
 									echo "<td>".$value->telepon."</td>";
 									echo "<td>".$value->email."</td>";
 									echo "<td>".$value->alamat."</td>";
-									echo "<td> <a href=edit_pelajaran/".$value->idpelajaran.">edit</a>  | <a href=hapusPelajaran/".$value->idpelajaran.">hapus</a></td>";
+									echo "<td> <a href=edit_murid/".$value->kode_murid.">edit</a>  | <a href=hapusMurid/".$value->kode_murid.">hapus</a></td>";
 
 									echo "</tr>";
 								}

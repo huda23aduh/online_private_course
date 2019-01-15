@@ -37,7 +37,12 @@ class Guru_model extends CI_Model
    
     public function getAll()
     {
-        return $this->db->get('guru')->result();
+        $this->db->select('*');
+        $this->db->from('guru');
+        $this->db->where('is_deleted', 0 );
+        
+        $query = $this->db->get();
+        return $query->result();    
     }
 
     public function getAllGuruByIdPelajaran($id_pelajaran_param)
@@ -51,9 +56,15 @@ class Guru_model extends CI_Model
         return $query->result();    
     }
     
-    public function getById($id)
+    public function getById($kode_guru)
     {
-        return $this->db->get_where($this->_table, ["product_id" => $id])->row();
+        $this->db->select('*');
+        $this->db->from('guru');
+        $this->db->where('kode_guru', $kode_guru );
+        $this->db->where('is_deleted', 0 );
+        $query = $this->db->get();
+        
+        return $query->result(); 
     }
 
     public function save($data,$table){
@@ -84,8 +95,19 @@ class Guru_model extends CI_Model
         return  $idles;
     }
 
-    public function delete($id)
-    {
-        return $this->db->delete($this->_table, array("product_id" => $id));
+     public function updateDataGuru($kode_guru, $data,$table){
+
+        $this->db->where("kode_guru",$kode_guru);
+        $this->db->update($table,$data); 
+
+        return  $kode_guru;
+    }
+
+     public function delete($kode_guru, $data,$table){
+        
+        $this->db->where("kode_guru",$kode_guru);
+        $this->db->update($table,$data); 
+
+        return  $kode_guru;
     }
 }
